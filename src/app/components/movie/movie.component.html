@@ -1,0 +1,27 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">
+    <h1>Newton Flix</h1>
+  </a>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchMovie" name="searchMovie">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="search()">Search</button>
+  </form>
+</nav>
+
+
+<table class="table table-striped table-light table-hover ">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Year</th>
+      <th scope="col">IMDB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let movie of movies">
+      <td>{{movie.Title}}</td>
+      <td>{{movie.Year}}</td>
+      <td><a href="{{movie.imDBLink}}">{{movie.imDBLink}}</a></td>
+    </tr>
+  </tbody>
+</table>
