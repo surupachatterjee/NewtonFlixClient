@@ -4,7 +4,7 @@
   </a>
   <form class="form-inline" >
     <input class="form-control mr-sm-2" type="search" placeholder="newton" aria-label="Search" [(ngModel)]="searchMovie" name="searchMovie" [readonly]="showAlert" >
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="search()">Search</button>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="search(searchMovie)">Search</button>
   </form>
 </nav>
 
@@ -33,3 +33,12 @@
     </tr>
   </tbody>
 </table>
+<nav aria-label="Page navigation example" *ngIf="!showAlert">
+  <ul class="pagination justify-content-end">
+    <li class="page-item"><a class="page-link" href="#" (click)="previous()" 
+      [hidden]="hidePrevious">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">{{results?.currentPage}} of {{totalPages}}</a></li>
+    <li class="page-item"><a class="page-link" href="#" (click)="next()"
+      [hidden]="hideNext">Next</a></li>
+  </ul>
+</nav>
