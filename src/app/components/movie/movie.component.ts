@@ -26,25 +26,13 @@ export class MovieComponent implements OnInit {
 
   constructor(private movieService: MovieService) { }
 
-  // ngOnInit() {
-  //     this.movieService.getMovies('newton', 1).subscribe(moviesFound => {
-  //       this.moviesFound = moviesFound.movies;
-  //       this.movies = moviesFound.movies;
-  //       this.results = moviesFound;
-  //       this.searchedMovie = this.searchMovie;
-  //       this.showPrev = this.results.currentPage !== 1;
-  //       console.log(this.showPrev);
-  //       this.showNext = this.results.currentPage !== this.results.totalPages;
-  //       //console.log(Number(this.results.currentPage) +1);
-  //     })
-  // }
-
   ngOnInit() {
     this.search();
   }
 
   search(movie=this.defaultMovie,pageNum=1) {
     console.log(movie,pageNum);
+    movie = movie === '' ? this.defaultMovie: movie;
     this.movieService.getMovies(movie, pageNum)
     .subscribe(moviesFound => {
       console.log(moviesFound);
@@ -66,36 +54,6 @@ export class MovieComponent implements OnInit {
   
   }
 
-  // search(movie=this.searchMovie,pageNum=1) {
-  //   console.log(movie,pageNum);
-  //   if (this.searchMovie !== this.searchedMovie || 
-  //     (this.searchMovie === this.searchedMovie && pageNum !== 1 )) {
-  //     this.movieService.getMovies(movie, pageNum)
-  //     .subscribe(moviesFound => {
-  //       console.log(moviesFound);
-  //       this.movies = moviesFound.movies;
-  //       this.searchedMovie = this.searchMovie;
-  //       this.results = moviesFound;
-  //       if(pageNum===1){
-  //         this.totalPages = Number(this.results.totalPages);
-  //       }
-  //       this.hidePrevious = Number(this.results.currentPage) === 1;
-  //       console.log(this.hidePrevious)
-  //       this.hideNext = Number(this.results.currentPage) === this.totalPages;
-  //     },
-  //     (err) => {
-  //       // alert(err.error);
-  //       this.showAlert = true;
-  //       this.errMessage = err.error;
-        
-  //     }
-  //     )
-  //   }
-  //   else if (this.searchMovie === ''){
-  //     this.movies = this.moviesFound;
-  //   }
-  // }
-
   previous(){
      
     this.search(this.searchedMovie,Number(this.results.currentPage)-1);
@@ -108,7 +66,6 @@ export class MovieComponent implements OnInit {
   dismissAlert() {
     this.showAlert = false;
     this.searchMovie = '';
-    //this.movies = this.moviesFound;
     this.search();
   }
 
